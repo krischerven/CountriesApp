@@ -25,11 +25,10 @@ public class CountriesApp {
 					break;
 				}
 				case 2: {
-					final String name = Validator.getNextCountry(sc).trim();
-					final int population = Validator.getNextPopulation(sc, name);
-					final Country c = new Country(name, population);
-					System.out.println("Added a new country (" + c.getName() + ")");
+					String name = Validator.getNextCountry(sc).trim();
+					Country c = new Country(name, Validator.getNextPopulation(sc, name));
 					saveCountry(c);
+					System.out.println("Added a new country (" + c.getName() + ")");
 					countries = CountriesTextFile.getCountriesList();
 					showCountries(countries);
 					break;
