@@ -20,11 +20,7 @@ public class CountriesApp {
 					if (countries.isEmpty()) {
 						System.out.println("Nothing to display; countries.txt was empty.");
 					} else {
-						String display = "\n";
-						for (int i = 0; i < countries.size(); ++i) {
-							display += ((i+1) + ". " + countries.get(i).toString() + "\n");
-						}
-						System.out.println(display);
+						showCountries(countries);
 					}
 					break;
 				}
@@ -35,6 +31,7 @@ public class CountriesApp {
 					System.out.println("Added a new country (" + c.getName() + ")");
 					saveCountry(c);
 					countries = CountriesTextFile.getCountriesList();
+					showCountries(countries);
 					break;
 				}
 				case 3: {
@@ -55,6 +52,14 @@ public class CountriesApp {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private static void showCountries(ArrayList<Country> countries) {
+		String display = "\n";
+		for (int i = 0; i < countries.size(); ++i) {
+			display += ((i+1) + ". " + countries.get(i).toString() + "\n");
+		}
+		System.out.println(display);
 	}
 	
 }
