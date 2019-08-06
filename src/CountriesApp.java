@@ -1,7 +1,13 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.nio.file.Paths;
+import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.FileOutputStream;
+import java.io.File;
 
 public class CountriesApp {
+
 	public static void main(String[] args) {
 		final Scanner sc = new Scanner(System.in);
 		ArrayList<Country> countries = CountriesTextFile.getCountriesList();
@@ -27,7 +33,7 @@ public class CountriesApp {
 					final int population = Validator.getNextPopulation(sc, name);
 					final Country c = new Country(name, population);
 					System.out.println("Added a new country (" + c.getName() + ")");
-					c.save();
+					saveCountry(c);
 					countries = CountriesTextFile.getCountriesList();
 					break;
 				}
@@ -39,4 +45,16 @@ public class CountriesApp {
 		} while (!quit && Validator.confirm(sc));
 		System.out.println("Goodbye.");
 	}
+
+	private static void saveCountry(Country country) {
+		File file = Paths.get("countries.txt").toFile();
+		try {
+			PrintWriter out = new PrintWriter(new FileOutputStream("countries.txt", true));
+			out.println(country.getName()+"="+country.getPopulation());
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }
