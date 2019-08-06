@@ -23,7 +23,7 @@ public class CountriesApp {
 					break;
 				}
 				case 2: {
-					final String name = Validator.getNextCountry(sc).strip();
+					final String name = Validator.getNextCountry(sc).trim();
 					final int population = Validator.getNextPopulation(sc, name);
 					final Country c = new Country(name, population);
 					System.out.println("Added a new country (" + c.getName() + ")");

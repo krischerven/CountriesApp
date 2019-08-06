@@ -13,7 +13,7 @@ public class CountriesTextFile {
 			BufferedReader br = new BufferedReader(new FileReader("countries.txt"));
 			try {
 				String line = br.readLine();
-				while (line != null && !line.strip().equals("")) {
+				while (line != null && !line.trim().equals("")) {
 					String[] split = line.split("=");
 					countries.add(new Country(split[0], Integer.parseInt(split[1])));
 					line = br.readLine();
